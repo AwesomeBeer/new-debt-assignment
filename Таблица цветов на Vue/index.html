@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Учет цветов</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <h1>Учет цветов в лавке</h1>
+            
+            <form @submit.prevent="addItem">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        v-model="newItem.name" 
+                        placeholder="Вид цветов" 
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <input 
+                        type="number" 
+                        v-model="newItem.count" 
+                        placeholder="Количество" 
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <input 
+                        type="number" 
+                        v-model="newItem.price" 
+                        placeholder="Цена" 
+                        step="0.01" 
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="form-button">Добавить</button>
+                </div>
+            </form>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Вид цветов</th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in items" :key="index">
+                        <td v-if="editingIndex !== index">{{ item.name }}</td>
+                        <td v-else>
+                            <div class="edit-form">
+                                <input type="text" v-model="editItem.name">
+                            </div>
+                        </td>
+                        
+                        <td v-if="editingIndex !== index">{{ item.count }}</td>
+                        <td v-else>
+                            <div class="edit-form">
+                                <input type="number" v-model="editItem.count">
+                            </div>
+                        </td>
+                        
+                        <td v-if="editingIndex !== index">{{ item.price }}</td>
+                        <td v-else>
+                            <div class="edit-form">
+                                <input type="number" v-model="editItem.price" step="0.01">
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <template v-if="editingIndex !== index">
+                                <button @click="startEdit(index)" class="edit-btn">Изменить</button>
+                                <button @click="deleteItem(index)" class="delete-btn">Удалить</button>
+                            </template>
+                            <template v-else>
+                                <button @click="saveEdit" class="edit-btn">Сохранить</button>
+                                <button @click="cancelEdit" class="delete-btn">Отмена</button>
+                            </template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

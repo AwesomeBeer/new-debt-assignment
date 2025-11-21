@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="calc">
+        <div id="display">0</div>
+        <button class="btn" onclick="clearAll()">C</button>
+        <button class="btn" onclick="clearLast()">CE</button>
+        <button class="btn" onclick="input('/')">/</button>
+        <button class="btn" onclick="input('*')">*</button>
+        <button class="btn" onclick="input('7')">7</button>
+        <button class="btn" onclick="input('8')">8</button>
+        <button class="btn" onclick="input('9')">9</button>
+        <button class="btn" onclick="input('-')">-</button>
+        <button class="btn" onclick="input('4')">4</button>
+        <button class="btn" onclick="input('5')">5</button>
+        <button class="btn" onclick="input('6')">6</button>
+        <button class="btn" onclick="input('+')">+</button>
+        <button class="btn" onclick="input('1')">1</button>
+        <button class="btn" onclick="input('2')">2</button>
+        <button class="btn" onclick="input('3')">3</button>
+        <button class="btn big" onclick="calculate()">=</button>
+        <button class="btn" onclick="input('0')" style="grid-column: span 3;">0</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
